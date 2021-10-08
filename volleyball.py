@@ -1,12 +1,19 @@
 import itertools
 
-data = {'John':93, 'Cam':96, 'Owen':81, 'Blake':71, 'Courtney':83, 'Hailey':90, 'Todd':91, 'Heidi':60}
+def get_key(val, my_dict):
+    for key, value in my_dict.items():
+         if val == value:
+             return key
+ 
+    return "key doesn't exist"
+
+data = {'John':.93, 'Cam':.96, 'Owen':.81, 'Blake':.71, 'Courtney':.83, 'Hailey':.90, 'Todd':.91, 'Heidi':.60}
 
 combine = itertools.permutations(data.keys(),8)
 all_combinations = list(combine)
-
 all_teams_dict = {}
 for i in all_combinations:
+
     team_overall = 0
     smteam_overall = 0
     st = 0
@@ -42,9 +49,10 @@ for i in all_combinations:
     team_overall += smteam_overall
     smteam_overall = 0
 
-    all_teams_dict[i] = team_overall/8
+    all_teams_dict[i] = (team_overall/8) * 100
 
-max_key = max(all_teams_dict)
+max_val = max(all_teams_dict.values())
+max_key = get_key(max_val, all_teams_dict)
 
-print(max_key, all_teams_dict[max_key],"% Success")
+print(max_key, max_val, "% Success")
 
